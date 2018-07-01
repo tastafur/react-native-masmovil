@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './App';
+import { reactNativeMasmovil } from './src';
 
-AppRegistry.registerComponent('reactNativeMasmovil', () => App);
+AppRegistry.registerComponent('reactNativeMasmovil', () => reactNativeMasmovil);
