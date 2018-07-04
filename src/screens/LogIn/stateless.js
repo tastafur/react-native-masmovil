@@ -33,6 +33,7 @@ export default class LogIn extends Component {
             <Item floatingLabel style={styleComponent.item}>
               <Label style={styleComponent.label}>Usuario / Email</Label>
               <Input
+                testID={'emailInputTextLogin'}
                 value={this.state.email}
                 onChangeText={text => this.setState({
                   ...this.state,
@@ -43,6 +44,7 @@ export default class LogIn extends Component {
             <Item floatingLabel style={styleComponent.item}>
               <Label style={styleComponent.label}>Password</Label>
               <Input
+                testID={'passwordInputTextLogin'}
                 secureTextEntry
                 value={this.state.password}
                 onChangeText={text => this.setState({
@@ -57,7 +59,12 @@ export default class LogIn extends Component {
                 <Text>Recordar Usuario y Password</Text>
               </Body>
             </ListItem>
-            <Button block style={styleComponent.button} onPress={this.onPressButton}>
+            <Button
+              block
+              style={styleComponent.button}
+              onPress={this.onPressButton}
+              testID={'buttonLogin'}
+            >
               <Text>ENTRAR</Text>
             </Button>
           </Form>

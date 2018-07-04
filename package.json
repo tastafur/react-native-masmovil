@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
+    "test:e2e:local-ios": "npm run fake-test && open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app && sleep 5 && detox build -c ios.sim.debug && detox test -c ios.sim.debug -l",
     "fake-test": "RNM_BRANCH=test node ./lib/config.js",
     "fake-dev": "RNM_BRANCH=dev node ./lib/config.js",
     "fake-beta": "RNM_BRANCH=beta node ./lib/config.js",
@@ -24,11 +25,24 @@
   "devDependencies": {
     "babel-jest": "23.0.1",
     "babel-preset-react-native": "4.0.0",
+    "detox": "^8.0.0",
     "jest": "23.1.0",
+    "mocha": "^5.2.0",
     "ramda": "^0.25.0",
     "react-test-renderer": "16.3.1"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "detox": {
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/reactNativeMasmovil.app",
+        "build": "xcodebuild -project ios/reactNativeMasmovil.xcodeproj -scheme reactNativeMasmovil -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7"
+      }
+    },
+    "test-runner": "mocha"
   }
 }
