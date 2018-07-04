@@ -3,7 +3,8 @@ export default
   new Promise((resolve, reject) => {
 
     const headers = {
-      'Content-Type': 'application/json;'
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     };
 
     const opts = {

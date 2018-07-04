@@ -9,7 +9,7 @@ export function user(state = initialUser, { type, payload }) {
     case SET_AUTH_CREDENTIALS:
       return {
         ...state,
-        userName: payload.userName,
+        email: payload.email,
         isAuth: payload.isAuth
       };
     default:

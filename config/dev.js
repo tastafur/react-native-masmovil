@@ -1,4 +1,4 @@
 module.exports = {
   branch: 'master',
-  lambdaUrl: 'https://reactnativemasmovilapi-dev.herokuapp.com'
+  baseUrl: 'https://reactanativemasmovilapi-dev.herokuapp.com'
 };

@@ -1,28 +1,67 @@
 import React, { Component } from 'react';
-import { Container, Content, Button, Label, Form, Item, Input, Text, Footer, FooterTab } from 'native-base';
+import { Container, Content, Button, Label, Form, Item, Input, Text, ListItem, CheckBox, Body } from 'native-base';
+
+import { styles } from './styles'
+
 export default class LogIn extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      checked: false,
+      email: '',
+      password: ''
+    }
+    this.onChecked = this.onChecked.bind(this)
+    this.onPressButton = this.onPressButton.bind(this)
+  }
+
+  onChecked() {
+    this.setState({checked: !this.state.checked})
+  }
+
+  onPressButton() {
+    const {email, password} = this.state
+    this.props.userLogin({email, password})
+  }
+
   render() {
+    const styleComponent = styles()
     return (
-      <Container>
-        <Content>
+      <Container style={styleComponent.container}>
+        <Content contentContainerStyle={styleComponent.contentContainer}>
           <Form>
-            <Item floatingLabel>
-              <Label>Username</Label>
-              <Input />
+            <Item floatingLabel style={styleComponent.item}>
+              <Label style={styleComponent.label}>Usuario / Email</Label>
+              <Input
+                value={this.state.email}
+                onChangeText={text => this.setState({
+                  ...this.state,
+                  email: text
+                })}
+              />
             </Item>
-            <Item floatingLabel last>
-              <Label>Password</Label>
-              <Input />
+            <Item floatingLabel style={styleComponent.item}>
+              <Label style={styleComponent.label}>Password</Label>
+              <Input
+                secureTextEntry
+                value={this.state.password}
+                onChangeText={text => this.setState({
+                  ...this.state,
+                  password: text
+                })}
+              />
             </Item>
+            <ListItem noIndent style={styleComponent.listItem}>
+              <CheckBox checked={this.state.checked} color={'#cc0001'} onPress={this.onChecked} />
+              <Body>
+                <Text>Recordar Usuario y Password</Text>
+              </Body>
+            </ListItem>
+            <Button block style={styleComponent.button} onPress={this.onPressButton}>
+              <Text>ENTRAR</Text>
+            </Button>
           </Form>
         </Content>
-        <Footer>
-          <FooterTab>
-            <Button full>
-              <Text>Footer</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
       </Container>
     );
   }

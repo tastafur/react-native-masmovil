@@ -13,5 +13,6 @@ export default createDrawerNavigator(
     navigationOptions: {
       header: null
     },
+
   }
 );

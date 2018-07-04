@@ -9,7 +9,7 @@ import config from '../../config/config.json';
 
 // actions
 import { mainLoading } from '../actions/common'
-import { USER_LOGIN, IS_AUTH } from '../actions/user';
+import { USER_LOGIN, IS_AUTH, setAuthCredentials } from '../actions/user';
 
 // selects
 import { getIsAuth } from '../selectors/user';
@@ -17,10 +17,15 @@ import { getIsAuth } from '../selectors/user';
 //services
 import { login } from '../services/login'
 
-export function* profileLoginProcess({payload: {userName, pass}}) {
+export function* profileLoginProcess({payload: {email, password}}) {
   try {
     yield put(mainLoading(true))
-    yield call(login, {baseUrl: config.baseUrl, credentials:{user: {userName, password: pass}}})
+    const { result } = yield call(login, {baseUrl: config.baseUrl, credentials:{user: {email, password}}})
+    if(result) {
+      yield put(setAuthCredentials({email, isAuth: true}));
+      yield call(NavigationService.navigate, { routeName: 'Home' });
+    }
+    yield call([console, console.log], 'response', response)
     yield put(mainLoading(false))
   } catch (e) {
     yield call([console, console.log], e)
