@@ -1,4 +1,5 @@
 export const USER_LOGIN = 'USER_LOGIN';
+export const IS_AUTH = 'IS_AUTH';
 export const SET_AUTH_CREDENTIALS = 'SET_AUTH_CREDENTIALS';
 
 export function userLogin({userName, pass}) {
@@ -8,6 +9,11 @@ export function userLogin({userName, pass}) {
       userName,
       pass
     }
+  };
+}
+export function isAuth() {
+  return {
+    type: IS_AUTH
   };
 }
 

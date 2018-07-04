@@ -1,4 +1,9 @@
 import { combineReducers } from 'redux';
+
+// actions
+import { TOTAL_LOGOUT } from '../actions/root'
+
+// reducers
 import { commons } from './commons'
 import { user } from './user'
 import { error } from './error'

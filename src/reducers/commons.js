@@ -1,7 +1,7 @@
 import { IS_LOADING } from '../actions/common'
 
 const initialCommons = {
-  isLoading: false
+  isLoading: true
 };
 
 export function commons(state = initialCommons, { type, payload }) {
