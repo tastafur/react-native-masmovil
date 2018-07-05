@@ -1,50 +1,32 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
-import { Container, Header, Content, Left, Button, Icon, Body, Title, Right, Card, CardItem } from 'native-base';
+import { View } from 'react-native'
+import { Container, Header, Content, Left, Button, Icon, Body, Title, Right } from 'native-base';
+import { styles } from './styles'
+import PieChartMasmovil from '../../components/PieChart'
 export default class Home extends Component {
   render() {
+    const styleComponent = styles()
     return (
-      <Container>
-        <Header>
+      <Container testID={'homeView'}>
+        <Header style={styleComponent.header}>
           <Left>
             <Button
               transparent
               onPress={() => this.props.navigation.openDrawer()}
             >
-              <Icon name="menu" />
+              <Icon style={styleComponent.headerIcon} name={'menu'} />
             </Button>
           </Left>
           <Body>
-            <Title>HomeScreen</Title>
+            <Title style={styleComponent.headerTitle}>Consumo</Title>
           </Body>
           <Right />
         </Header>
         <Content padder>
-          <Card>
-            <CardItem>
-              <Body>
-              <Text>Chat App to talk some awesome people!</Text>
-              </Body>
-            </CardItem>
-          </Card>
-          <Button
-            full
-            rounded
-            dark
-            style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate("Chat")}
-          >
-            <Text>Chat With People</Text>
-          </Button>
-          <Button
-            full
-            rounded
-            primary
-            style={{ marginTop: 10 }}
-            onPress={() => this.props.navigation.navigate("ProfileScreen")}
-          >
-            <Text>Goto Profiles</Text>
-          </Button>
+          <View style={styleComponent.titleGraphContainer}>
+            <Title style={styleComponent.titleGraph}>INTERNET</Title>
+          </View>
+          <PieChartMasmovil/>
         </Content>
       </Container>
     );

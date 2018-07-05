@@ -21,7 +21,7 @@ export function* profileLoginProcess({payload: {email, password}}) {
   try {
     yield put(mainLoading(true))
     const { result } = yield call(login, {baseUrl: config.baseUrl, credentials:{user: {email, password}}})
-    if(result) {
+    if(result === 'ok') {
       yield put(setAuthCredentials({email, isAuth: true}));
       yield call(NavigationService.navigate, { routeName: 'Home' });
     }
